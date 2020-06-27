@@ -1,0 +1,40 @@
+<!--Подключаем шапку сайта-->
+<?php require VIEWS . '/_common/header.phtml'; ?>
+
+<script>
+    $(document).ready(function () {
+        $('#buttonEditRow').click(function () {
+            let array = [];
+
+            $('input[name="inputEdit"]').each(function (i, input) {
+                array.push($(input).val());
+            });
+
+            let name = $('.selectSheet').val();
+
+            $.get('/index/editrow', {array, name}, function (result) {
+                if (result['error'] == undefined) {
+                    alert('Запись в таблице изменена!');
+                }
+                console.log(result);
+            });
+        });
+    });
+</script>
+<div class="container">
+    <?php
+    // Пространство для творчества
+    // Для примера можно использовать файл index.phtml
+    /*
+    Проверку, какое поле будем изменять, осуществляем по одному значению - ID записи.
+        Прим.: поле должно стоять первым в списке полей с именами "inputEdit"
+    Для этого необходимо:
+        1. текстовые поля для изменения значений в таблице: name поля "inputEdit" (см. 9 строку)
+        2. выбор листа таблицы, в котором будем работать, присвоить ему class "selectSheet" (см. 13 строку)
+        3. кнопка для запуска процесса удаления записи, присвоить ей id "buttonEditRow" (см. 6 строку)
+    */
+    ?>
+</div>
+
+<!--Подключаем подвал сайта-->
+<?php require VIEWS . '/_common/footer.phtml'; ?>

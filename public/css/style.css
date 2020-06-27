@@ -1,0 +1,139 @@
+.h2-norm {
+    font-weight: normal;
+}
+.h2-nenorm {
+    margin-left: 15px;
+}
+thead {
+    text-align: center;
+    font-weight: bold;
+}
+#thead-contacts-list {
+    font-size: 15px;
+}
+#account-info, #contacts-info {
+    font-size: 15px; 
+    background-color: rgb(247, 247, 247);
+}
+#account-info, #contacts-info td {
+    border-bottom: 3px solid white; 
+}
+td {
+    vertical-align: top; 
+}
+.leftcol {
+    width: 100px;
+    font-weight: bold;
+}
+ul {
+    padding: 0;
+    padding-top: 3px;
+    margin-top: 0;
+    margin-left: 15px;
+}
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+.navigation ul {
+    margin: 0;
+    padding: 0;
+}
+.navigation ul li {
+    list-style-type: none;
+    display: inline-block;
+}
+.navigation a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid #222;
+    background: #222;
+    color: #fff;
+}
+.navigation a:hover {
+    color: #222;
+    background: transparent;
+}
+.container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 33px;
+}
+.container table {
+    font-size: 11px;
+    margin-top: 20px;
+}
+.container table thead td {
+    background-color: #f5f5f5;
+    padding: 4px 10px;
+}
+.container table tbody td {
+    padding: 4px 10px;
+}
+.container .box {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 30px;
+}
+.container input, .container textarea {
+    background-color: #f5f5f5;
+    border: 0;
+    padding: 5px 10px;
+}
+.container input[type="submit"] {
+    background-color: #ccc;
+    cursor: pointer;
+}
+.container input[type="submit"]:hover {
+    background-color: #222;
+    color: #fff;
+}
+.selectSheet {
+    background-color: #ccc;
+    cursor: pointer;
+}
+.selectSheet:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container input[type="button"] {
+    background-color: #ccc;
+    cursor: pointer;
+}
+.container input[type="button"]:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container button {
+    background-color: #ccc;
+    border: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.container button:hover {
+    background-color: #222;
+    color: #fff;
+}
+.footer {
+    padding: 20px;
+    margin: 33px;
+    text-align: right;
+    font-size: 11px;
+    opacity: 0.5;
+}
+.footer a {
+    color: #454545;
+}
+.hide {
+    display: none;
+}
+.open_post {
+    cursor: pointer;
+}
+.open_post:hover {
+    text-decoration: underline;
+}

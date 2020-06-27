@@ -1,0 +1,64 @@
+<!--Подключаем шапку сайта-->
+<?php require VIEWS . '/_common/header.phtml'; ?>
+
+<script>
+    // Скрипт для передачи данных о добавлении новой записи
+    $(document).ready(function () {
+        // #buttonAddRow - это id тэга. В нашем случае - это кнопка "добавить в таблицу"
+        $('#buttonAddRow').click(function () {
+            let array = [];
+
+            // Достаём все инпуты (текстовые поля) для добавления поля в строчку таблицы
+            $('input[name="inputAdd"]').each(function (i, input) {
+                // Собираем их значения в один массив
+                array.push($(input).val());
+            });
+
+            // В переменной name хранится выбранное название листа таблицы
+            let name = $('.selectSheet').val();
+
+            // Данный метод передаёт собранную выше информацию (массив array и название листа таблицы name)
+            // на обработку в app/Controllers/IndexController.php в функцию addAction (записано как '/index/add')
+            $.get('/index/add', {array, name}, function (result) {
+                // Проверяем, вернул ли массив result ошибку. Если ошибка не найдена
+                // (то есть элемента массива "error" не существует), тогда выводим сообщение пользователю
+                if (result['error'] == undefined) {
+                    alert('Запись в таблице создана!');
+                }
+                // Выводим результат добавления в консоль (F12)
+                console.log(result);
+            });
+        });
+    });
+</script>
+<div class="container">
+    <?php
+    // Если нам пришли названия листов таблицы,
+    // тогда мы выводим три текстовых поля <input type="text"...>. В них будем вводить данные, которые хотим создать в нашей таблице
+    if (isset($names)) {
+        echo '
+            <form id="ajax_form" action="" method="POST">
+                <label>Поле #1:</label><br/>
+                <input type="text" name="inputAdd" placeholder="ID" required/><br/><br/>
+                <label>Поле #2:</label><br/>
+                <input type="text" name="inputAdd" placeholder="Столбец #2"/><br/><br/>
+                <label>Поле #3:</label><br/>
+                <input type="text" name="inputAdd" placeholder="Столбец #2"/><br/><br/>
+                
+                <select class="selectSheet">';
+        // Далее с помощью цикла foreach проходим по массиву с именами листов нашей таблицы.
+        // Каждое имя записываем в выпадающий список, чтобы было проще выбрать нужный лист.
+        foreach ($names as $name) {
+            echo "<option>$name</option>";
+        }
+        // Ниже выводим кнопку, при нажатии на которую сработает скрипт (находится в самом начале файла).
+        // id="buttonAddRow" необходим для точной идентификации кнопки и её предназначения.
+        echo '</select></br></br>
+                <input id="buttonAddRow" type="button" name="submit" value="Добавить в таблицу"/>
+            </form>';
+    }
+    ?>
+</div>
+
+<!--Подключаем подвал сайта-->
+<?php require VIEWS . '/_common/footer.phtml'; ?>

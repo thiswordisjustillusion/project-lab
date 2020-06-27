@@ -1,0 +1,42 @@
+<!--Подключаем шапку сайта-->
+<?php require VIEWS . '/_common/header.phtml'; ?>
+
+<script>
+    // Скрипт для передачи данных об удалении записи в таблице
+    $(document).ready(function () {
+        $('#buttonDeleteRow').click(function () {
+            // Достаём инпут ID для удаления соответствующей записи из таблицы
+            let deleteRow = $('input[name="inputDelete"]').val();
+
+            // В переменной name хранится выбранное название листа таблицы
+            let name = $('.selectSheet').val();
+
+            // Данный метод передаёт собранную выше информацию (массив array и название листа таблицы name)
+            // на обработку в app/Controllers/IndexController.php в функцию addAction
+            $.get('/index/deleterow', {deleteRow, name}, function (result) {
+                if (result['error'] == undefined) {
+                    alert('Запись удалена!');
+                }
+                // Выводим результат добавления в консоль (F12)
+                console.log(result);
+            });
+        });
+    });
+</script>
+
+<div class="container">
+    <?php
+    // Пространство для творчества
+    // Для примера можно использовать файл index.phtml
+    /*
+    Проверку, какое поле будем удалять, осуществляем по одному значению - ID записи.
+    Для этого необходимо:
+        1. текстовое поле для записи этого значения: name поля "inputDelete" (см. 9 строку)
+        2. выбор листа таблицы, в котором будем работать, присвоить ему class "selectSheet" (см. 12 строку)
+        3. кнопка для запуска процесса удаления записи, присвоить ей id "buttonDeleteRow" (см. 7 строку)
+    */
+    ?>
+</div>
+
+<!--Подключаем подвал сайта-->
+<?php require VIEWS . '/_common/footer.phtml'; ?>

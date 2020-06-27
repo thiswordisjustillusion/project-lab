@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PHP MVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $('.open_post').click(function () {
+            $(this).next('form').slideToggle();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#changeLink').click(function () {
+                let newLink = prompt('Введите ID Таблицы: \n( после https://docs.google.com/spreadsheets/d/ )', '');
+
+                $.get('/index/changeSheetId', {newLink});
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li><a href="<?php echo URL; ?>">add</a></li>
+            <li><a href="<?php echo URL; ?>index/delete/">delete</a></li>
+            <li><a href="<?php echo URL; ?>index/edit/">edit</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2>Работа с Google Sheet через OAuth</h2>
+    <?php
+    // Если нам пришел параметр "ID гугл таблицы":
+    if (isset($sheetId)) {
+        // оставляем ссылку для быстрого доступа к таблице
+        echo "<span>Текущая таблица Google:</span><br><a href='https://docs.google.com/spreadsheets/d/$sheetId'>https://docs.google.com/spreadsheets/d/$sheetId</a> 
+        <!-- оставляем кнопку для изменения текущей таблицы -->
+              <a href='' id='changeLink' style='margin-left: 20px;'>изменить</a>";
+    }
+    ?>
+</div>
